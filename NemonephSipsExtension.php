@@ -1,13 +1,13 @@
 <?php
 
-namespace Acme\ExamplePlugin\DependencyInjection;
+namespace Nemoneph\SipsPlugin\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-final class AcmeExampleExtension extends Extension
+final class NemonephSipsExtension extends Extension
 {
     /**
      * {@inheritdoc}

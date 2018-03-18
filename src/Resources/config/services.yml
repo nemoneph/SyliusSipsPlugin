@@ -1,0 +1,38 @@
+services:
+    Nemoneph\SipsPlugin\Form\SipsGatewayConfigurationType:
+        tags:
+            - { name: sylius.gateway_configuration_type, type: atos_sips, label: atos_sips }
+            - { name: form.type }
+
+
+    Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder:
+        arguments: [Nemoneph\SipsPlugin\SipsGatewayFactory]
+        tags:
+            - { name: payum.gateway_factory_builder, factory: mercanet_bnp_paribas }
+
+    Nemoneph\SipsPlugin\Action\CaptureAction:
+        arguments:
+            - '@payum'
+            - '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge'
+        tags:
+            - { name: payum.action, factory: mercanet_bnp_paribas, alias: payum.action.capture }
+
+    bitbag.mercanet_bnp_paribas.action.notify:
+        class: BitBag\MercanetBnpParibasPlugin\Action\NotifyAction
+        arguments:
+            - '@bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge'
+            - '@sm.factory'
+        tags:
+            - { name: payum.action, factory: mercanet_bnp_paribas, alias: payum.action.notify }
+
+    bitbag.mercanet_bnp_paribas.action.status:
+        class: BitBag\MercanetBnpParibasPlugin\Action\StatusAction
+        arguments:
+            - '@request_stack'
+        tags:
+            - { name: payum.action, factory: mercanet_bnp_paribas, alias: payum.action.status }
+
+    bitbag.mercanet_bnp_paribas.bridge.mercanet_bnp_paribas_bridge:
+        class: BitBag\MercanetBnpParibasPlugin\Bridge\MercanetBnpParibasBridge
+        arguments:
+            - '@request_stack'
