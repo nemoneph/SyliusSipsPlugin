@@ -16,9 +16,6 @@ final class SipsGatewayConfigurationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('secret_key', TextType::class, [
-                'label' => 'Secret',
-            ])
             ->add('merchant_id', TextType::class, [
                 'label' => 'Merchant ID',
             ])

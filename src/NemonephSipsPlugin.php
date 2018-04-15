@@ -6,5 +6,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class NemonephSipsPlugin extends Bundle
 {
+
     use SyliusPluginTrait;
 }

@@ -24,6 +24,8 @@ final class SipsGatewayFactory extends GatewayFactory
     protected function populateConfig(ArrayObject $config)
     {
 
+
+
         $template = false != $config['payum.template.capture']
             ? $config['payum.template.capture']
             : '@PayumSips/Action/capture.html.twig';
@@ -58,11 +60,13 @@ final class SipsGatewayFactory extends GatewayFactory
             $requiredOptions[] = 'client';
 
             $config['payum.client'] = function (ArrayObject $config) {
+
                 $config->validateNotEmpty($config['payum.required_options']);
 
-                new Client($config['client']);
+                return new Client($config['client']);
             };
         }
+
 
         if (false == $config['payum.api']) {
             $defaultOptions['api'] = array_replace(array(
@@ -85,6 +89,8 @@ final class SipsGatewayFactory extends GatewayFactory
 
             $requiredOptions[] = 'api';
 
+
+
             $config['payum.api'] = function (ArrayObject $config) {
                 $config->validateNotEmpty($config['payum.required_options']);
 
@@ -95,6 +101,8 @@ final class SipsGatewayFactory extends GatewayFactory
                 return new Api($config['api'], $client);
             };
         }
+
+
 
         $config['payum.default_options']  = $defaultOptions;
         $config['payum.required_options'] = $requiredOptions;
