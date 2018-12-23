@@ -23,12 +23,9 @@ final class SipsGatewayFactory extends GatewayFactory
      */
     protected function populateConfig(ArrayObject $config)
     {
-
-
-
         $template = false != $config['payum.template.capture']
             ? $config['payum.template.capture']
-            : '@PayumSips/Action/capture.html.twig';
+            : '@NemonephSipsPlugin/Action/capture.html.twig';
 
         $apiConfig = false != $config['payum.api_config']
             ? (array) $config['payum.api_config']
