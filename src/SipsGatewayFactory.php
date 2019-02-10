@@ -11,6 +11,8 @@ use Nemoneph\SipsPlugin\Action\StatusAction;
 use Nemoneph\SipsPlugin\Action\SyncAction;
 use Nemoneph\SipsPlugin\Client\Client;
 use Nemoneph\SipsPlugin\Api\Api;
+use Nemoneph\SipsPlugin\Action\NotifyAction;
+
 
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayFactory;
@@ -42,6 +44,8 @@ final class SipsGatewayFactory extends GatewayFactory
             'payum.action.call_response'   => new CallResponseAction(),
             'payum.action.sync'            => new SyncAction(),
             'payum.action.status'          => new StatusAction(),
+            'payum.action.notify'          => new NotifyAction()
+
         ]);
 
 
