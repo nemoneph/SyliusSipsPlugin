@@ -104,7 +104,7 @@ class Client
             throw new \InvalidArgumentException(sprintf('Binary %s not found', $bin));
         }
 
-        $process = new Process(sprintf('"%s" %s', $bin, escapeshellcmd($this->arrayToArgsString($args))));
+        $process = Process::fromShellCommandline(sprintf('"%s" %s', $bin, escapeshellcmd($this->arrayToArgsString($args))));
         $process->run();
 
         if (!$process->isSuccessful()) {
